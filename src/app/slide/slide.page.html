@@ -1,0 +1,53 @@
+
+    <ion-header>
+      <ion-toolbar  color="primary">
+        <ion-title style="margin-left: 10%">
+         Bienvenue sur  Mon ecolier
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+<ion-content fullscreen>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button color="primary">
+            <ion-icon name="arrow-forward" (click)="gotoHome()" ></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+      <ion-grid no-padding>
+    <ion-slides pager="true" [options]="slideOpts">
+
+        <ion-slide>
+            <ion-row>
+                <ion-col fullscreen no-padding>
+                  <img src="assets/imgs/p4.jpg" />
+                </ion-col>
+              </ion-row>
+        </ion-slide>
+      
+        <ion-slide>
+            <ion-row>
+                <ion-col fullscreen no-padding>
+                  <img src="assets/imgs/p1.jpg" />
+                </ion-col>
+              </ion-row>
+        </ion-slide>
+      
+        <ion-slide>
+            <ion-row>
+                <ion-col fullscreen no-padding>
+                  <img src="assets/imgs/p2.jpg" />
+                </ion-col>
+              </ion-row>
+        </ion-slide>
+      
+        <ion-slide>
+          <ion-row>
+            <ion-col fullscreen no-padding>
+              <img src="assets/imgs/p3.jpg" />
+            </ion-col>
+          </ion-row>
+        </ion-slide>
+      
+      </ion-slides>
+    </ion-grid>
+</ion-content>

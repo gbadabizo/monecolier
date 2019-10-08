@@ -1,0 +1,4 @@
+#Sun Oct 06 00:29:10 GMT 2019
+base.0=/Users/edem/Documents/mesprojets/angular_ionic/monecolier/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0
+path.0=classes.dex
+renamed.0=classes.dex

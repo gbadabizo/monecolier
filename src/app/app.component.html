@@ -1,3 +1,78 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
-</ion-app>
+    <ion-split-pane>
+      <ion-menu type="overlay">
+        <ion-header>
+          <ion-toolbar  color="primary">
+            <ion-title>Monecolier</ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content>
+            <ion-list style="background-color:#f2bcbc;">
+              <ion-item-divider color="secondary">
+                <ion-thumbnail slot="start">
+                    <img src="assets/imgs/user-80.png">
+                  </ion-thumbnail>
+                  <ion-label>
+                    <h3>Edem GBADABIZO</h3>
+                    <ion-chip color="success">
+                        <ion-icon name="checkmark-circle"></ion-icon>
+                        <ion-label>Connecté</ion-label>
+                    </ion-chip> 
+                   </ion-label>
+              </ion-item-divider>
+              <ion-item-divider color="secondary">
+                  <ion-button size="small" color="primary"><ion-icon name="contact"></ion-icon> Mon profil</ion-button>
+                  <ion-button size="small" color="primary"><ion-icon name="log-out"></ion-icon> Déconnexion</ion-button>
+              </ion-item-divider>
+                  
+              </ion-list>
+              
+              <ion-list>
+                  <ion-item>
+                      <ion-avatar slot="start">
+                        <img src="assets/imgs/home-64.png">
+                      </ion-avatar>
+                      <ion-label>Accueil </ion-label>
+                   </ion-item>   
+                   <ion-item>
+                      <ion-avatar slot="start">
+                        <img src="assets/imgs/message-64.png">
+                      </ion-avatar>
+                      <ion-label>Messages </ion-label>
+                   </ion-item>
+                   <ion-item>
+                      <ion-avatar slot="start">
+                        <img src="assets/imgs/history-60.png">
+                      </ion-avatar>
+                      <ion-label>Abonnements </ion-label>
+                   </ion-item>     
+              </ion-list> 
+              <ion-item-divider color="primary">
+                  <h5>Mes Elèves </h5>
+                </ion-item-divider>
+                <ion-list>
+                      <ion-item>
+                        <ion-avatar slot="start">
+                          <img src="assets/imgs/male-user-50.png">
+                        </ion-avatar>
+                        <ion-label>Elom </ion-label>
+                     </ion-item> 
+                     <ion-item>
+                        <ion-avatar slot="start">
+                          <img src="assets/imgs/male-user-50.png">
+                        </ion-avatar>
+                        <ion-label>Christine </ion-label>
+                     </ion-item> 
+                     <ion-item>
+                        <ion-avatar slot="start">
+                          <img src="assets/imgs/male-user-50.png">
+                        </ion-avatar>
+                        <ion-label>Georges </ion-label>
+                     </ion-item>
+                </ion-list>
+        </ion-content>
+      </ion-menu>
+      <ion-router-outlet main></ion-router-outlet>
+    </ion-split-pane>
+  </ion-app>
+  

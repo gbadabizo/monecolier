@@ -1,0 +1,113 @@
+<ion-header>
+    <ion-header>
+      <ion-toolbar  color="primary">
+        <ion-title style="margin-left: 20%">
+         Suivre un élève
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+<ion-content fullscreen>
+    <ion-grid no-padding  *ngIf="isadd" >
+    <ion-row>
+      <ion-col fullscreen no-padding>
+         <ion-img  class="image" src="assets/imgs/p3.jpg"></ion-img></ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="!isadd" fullscreen no-padding>
+    <ion-list style="background-color:#f2bcbc;">
+      <ion-item-divider color="secondary">
+        <ion-thumbnail slot="start">
+            <img src="assets/imgs/user-green-100.png">
+          </ion-thumbnail>
+          <ion-label>
+            <h2>{{eleve.nom}} {{eleve.prenoms}}</h2>
+           </ion-label>
+      </ion-item-divider>
+      <ion-item-divider color="secondary">
+        <ion-button size="small" color="primary"><ion-icon name="school"></ion-icon> {{ecole.nom}}</ion-button>
+        <ion-button size="small" color="primary"><ion-icon name="reorder"></ion-icon>{{classe.code}}</ion-button>
+        <ion-button size="small" color="primary"><ion-icon name="time"></ion-icon> {{annee.libelle}}</ion-button>
+      </ion-item-divider>
+          
+      </ion-list>
+  </ion-grid>
+
+    <ion-card *ngIf="isadd">
+       
+     <ion-card-content>
+            <form [formGroup]="addEleveForm" (ngSubmit)="saveAddEleve()">
+                <ion-grid>
+                    <ion-row>
+                      <ion-col>
+                  <ion-item>
+                    <ion-label position="floating">Matricule de l'élève</ion-label>
+                    <ion-input type=text  name="matricule" formControlName="matricule"></ion-input>
+                  </ion-item>
+                </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col>
+                 <ion-item>
+                    <ion-label>Année scolaire</ion-label>
+                    <ion-select ok-text="Ok" cancel-text="Annuler"   name="annee" formControlName="annee">
+                      <ion-select-option *ngFor="let annee of annees" value="{{annee.id_annee}}">{{annee.libelle}}</ion-select-option>
+    
+                    </ion-select>
+                  </ion-item>
+              </ion-col>
+                </ion-row>
+                      <ion-row>
+                        <ion-col>
+                      <ion-item>
+                          <ion-label position="floating">Ecole de l'élève</ion-label>
+                          <ionic-selectable
+                         formControlName="ecole"
+                            [(ngModel)]="ecole"
+                            [items]="ecoles"
+                            itemValueField="id_ecole"
+                            itemTextField="nom"
+                            [canSearch]="true"
+                            (onChange)="portChange($event)">
+                            <ng-template ionicSelectableCloseButtonTemplate>
+                              <ion-icon name="close-circle" style="font-size: 24px;"></ion-icon>
+                            </ng-template>  
+                            
+                      </ionic-selectable>
+                      </ion-item>
+                      </ion-col>
+                      </ion-row>
+                   <br/>
+                  <ion-row>
+                      <ion-col align-self-center>
+                        
+                    <ion-button color="primary" style="margin-left: 15%" type="submit" [disabled]="!addEleveForm.valid" ><ion-icon name="checkmark-circle-outline"></ion-icon>&nbsp;Suivre</ion-button>
+                    </ion-col>
+                    <ion-col align-self-center>
+                    <ion-button color="medium"  style="margin-left: 10%"  (click)="exitApp()"> <ion-icon name="close-circle-outline"></ion-icon>&nbsp;Annuler</ion-button>
+                  </ion-col>
+                  </ion-row>
+            </ion-grid>
+            </form>
+        </ion-card-content>
+      </ion-card>
+      <ion-card *ngIf="!isadd">
+        <ion-list>
+          <ion-list-header><h6>Suivre l'élève dans les matières suivantes</h6></ion-list-header>
+          <ion-label style="margin-left:2%" color="danger">*sélectionner les matières</ion-label>
+            <ion-item *ngFor="let m of matieres">
+              <ion-label>{{m.code}} - {{m.libelle}}</ion-label>
+              <ion-checkbox color="primary" checked slot="start" (ionChange)="datachanged(m)"></ion-checkbox>
+            </ion-item>
+            
+          </ion-list>
+      </ion-card>
+      <ion-row *ngIf="!isadd">
+        <ion-col align-self-center>   
+        <ion-button color="primary" style="margin-left: 15%" (click)="souscrire()"  ><ion-icon name="checkmark-circle-outline"></ion-icon>&nbsp; Confirmer</ion-button>
+      </ion-col>
+      <ion-col align-self-center>
+      <ion-button color="medium"  style="margin-left: 10%"  (click)="exitApp()"> <ion-icon name="close-circle-outline"></ion-icon>&nbsp;Annuler</ion-button>
+    </ion-col>
+    </ion-row>
+</ion-content>

@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-header>
+    <ion-toolbar  color="primary">
+      <ion-title style="margin-left: 10%">
+       Bienvenue sur  Mon ecolier
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content fullscreen>
+    
+    <ion-grid no-padding>
+        <ion-row>
+          <ion-col fullscreen no-padding> <ion-img  class="image" src="assets/imgs/p1.jpg" ></ion-img></ion-col>
+        </ion-row>
+    </ion-grid>
+   
+    <hr/>
+    <form [formGroup]="registerForm" (ngSubmit)="saveParent()">
+    <ion-grid>
+        <ion-row>
+          <ion-col>
+      <ion-item>
+        <ion-label position="floating">Nom</ion-label>
+        <ion-input type=text  name="nom" formControlName="nom"></ion-input>
+      </ion-item>
+    </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+    <ion-item>
+      <ion-label position="floating">Prenoms</ion-label>
+      <ion-input type=text  name="prenoms" formControlName="prenoms"></ion-input>
+    </ion-item>
+  </ion-col>
+    </ion-row>
+          <ion-row>
+            <ion-col>
+          <ion-item>
+              <ion-label position="floating">Telephone(22891754012)</ion-label>
+              <ion-input type="number" name="telephone" formControlName="telephone"></ion-input>
+          </ion-item>
+          </ion-col>
+          </ion-row>
+       <br/>
+      <ion-row>
+          <ion-col align-self-center>
+            
+        <ion-button color="primary" style="margin-left: 15%" type="submit" [disabled]="!registerForm.valid" ><ion-icon name="checkmark-circle-outline"></ion-icon>&nbsp;Inscription</ion-button>
+        </ion-col>
+        <ion-col align-self-center>
+        <ion-button color="medium"  style="margin-left: 10%"  (click)="exitApp()"> <ion-icon name="close-circle-outline"></ion-icon>&nbsp;Annuler</ion-button>
+      </ion-col>
+      </ion-row>
+</ion-grid>
+</form>
+</ion-content>
+

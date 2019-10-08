@@ -1,5 +1,7 @@
 {
   "name": "monecolier",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
