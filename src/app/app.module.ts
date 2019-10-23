@@ -1,3 +1,4 @@
+import { ModalsuiviPage } from './modalsuivi/modalsuivi.page';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -17,8 +18,8 @@ import { IonicStorageModule } from '@ionic/storage';
 
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [AppComponent,ModalsuiviPage],
+  entryComponents: [ModalsuiviPage],
   imports: [
     //BrowserAnimationsModule,
     BrowserModule, 
@@ -39,6 +40,8 @@ import { IonicStorageModule } from '@ionic/storage';
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
-  bootstrap: [AppComponent]
+  
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule {}

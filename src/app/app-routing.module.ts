@@ -8,6 +8,9 @@ const routes: Routes = [
   { path: 'slide', loadChildren: './slide/slide.module#SlidePageModule' },
   { path: 'confirm', loadChildren: './confirm/confirm.module#ConfirmPageModule' },
   { path: 'eleve', loadChildren: './eleve/eleve.module#ElevePageModule' },
+  { path: 'details', loadChildren: './details/details.module#DetailsPageModule' },
+  { path: 'modalsuivi', loadChildren: './modalsuivi/modalsuivi.module#ModalsuiviPageModule' },
+  
 ];
 
 @NgModule({

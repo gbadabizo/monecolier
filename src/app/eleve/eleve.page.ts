@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { IonicSelectableComponent } from 'ionic-selectable';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-eleve',
@@ -22,9 +22,11 @@ export class ElevePage implements OnInit {
   });
   eleve:any;
   matieres=[];
+  souscrimats=[];
   classe:any;
   isadd=true;
   annee:any;
+  idparent='';
   savedMatiere:any;
   parameters={
     id_ecole:'',
@@ -36,7 +38,8 @@ export class ElevePage implements OnInit {
     id_eleve:'',
     id_annee:'',
     id_classe:'',
-    matiere:[]
+    id_parent:'',
+    matieres:[]
   }
   ecoles: Ecole[];
   ecole: Ecole;
@@ -44,7 +47,8 @@ export class ElevePage implements OnInit {
   userid:any;
   
 
-  constructor(public alertCtrl: AlertController,private router: Router, private eleveService: EleveService,private storage: Storage) {
+  constructor(public alertCtrl: AlertController,private router: Router, private eleveService: EleveService,private storage: Storage,
+    private toastCtrl: ToastController) {
     
 }
 
@@ -87,6 +91,10 @@ portChange() {
             this.matieres=data.datas[2];
             this.savedMatiere=this.matieres;
             this.annee=data.datas[3];
+            this.idparent=data.datas[4];
+          }else{
+            let message="Matricule introuvable";
+            this.presentToast(message);
           }
     });
 
@@ -95,17 +103,32 @@ portChange() {
     this.souscrireData.id_annee=this.annee.id_annee;
     this.souscrireData.id_eleve=this.eleve.id_eleve;
     this.souscrireData.id_classe=this.classe.id_classe;
-    this.souscrireData.matiere= this.matieres;
+    this.souscrireData.id_parent=this.idparent;
+
+    this.souscrireData.matieres= this.matieres;
+    this.eleveService.souscrire(this.souscrireData).subscribe((data:any)=>{
+      if(data.code==800){
+        this.router.navigate(['home']);
+      }else{
+        let message="Echec de souscription ";
+            this.presentToast(message);
+      }
+    });
+
     console.log(this.souscrireData);
   }
   datachanged(m){
     console.log(m);
     let mat = this.savedMatiere.find(ob => ob.id_matiere === m.id_matiere);
-    if(mat===null){
-        this.savedMatiere.push(m);
+    let index = this.savedMatiere.findIndex(item => item.id_matiere=== m.id_matiere);
+    console.log(index);
+    if(mat.status==1){
+       mat.status=2; 
     }else{
-      this.savedMatiere.splice(this.savedMatiere.indexOf(m),1);
+      mat.status=1;
+      this.souscrimats.push(mat);
     }
+    this.savedMatiere.splice(index,1,mat);
     console.log(this.savedMatiere);
   }
   exitApp() {
@@ -120,7 +143,12 @@ portChange() {
       {
         text: 'OK',
         handler: () => {
-          // tslint:disable-next-line: no-string-literal
+          this.addEleveForm=  new FormGroup({
+            matricule : new FormControl('', Validators.required),
+            ecole : new FormControl('', Validators.required),
+            annee : new FormControl('', Validators.required),
+           
+          });
           this.router.navigate(['home']);
         }
       }
@@ -130,4 +158,14 @@ portChange() {
     });
   }
 
+    async presentToast(mess:string) {
+      const toast = await this.toastCtrl.create({
+        message: mess,
+        duration: 5000,
+        position:'bottom',
+        color: 'danger'
+      });
+      toast.present();
+    }
+  
 }

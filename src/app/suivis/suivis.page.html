@@ -1,0 +1,19 @@
+
+<ion-content>
+  <ion-list>
+    <ion-card *ngFor="let suivi of suivis" >
+    <ion-item color="tertiary" (click)="details(suivi)" >
+      <ion-avatar slot="start">
+        <img src="assets/imgs/report-card-80.png">
+      </ion-avatar>
+      <ion-label>
+        <h2><ion-chip color="tertiary">
+          <ion-label color="secondary">Du {{suivi.datedebut  | date: 'dd/MM/yyyy' }} au {{suivi.datefin  | date: 'dd/MM/yyyy'}}</ion-label>
+        </ion-chip></h2>
+        Matière: {{suivi.codeMatiere }}  / {{suivi.observation }}
+      </ion-label>
+    </ion-item>
+    </ion-card>
+   
+  </ion-list>
+</ion-content>

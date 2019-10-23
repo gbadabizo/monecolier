@@ -8,19 +8,26 @@
       </ion-title>
     </ion-toolbar>
   </ion-header>
-  
-      <ion-content>
+ 
+     
+      <ion-content  fullscreen>
+          <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+              <ion-fab-button color="primary"  (click)="gotoAddEleve()">
+                <ion-icon name="add"></ion-icon>
+              </ion-fab-button>
+            </ion-fab>
           <ion-grid no-padding>
               <ion-row>
                 <ion-col fullscreen no-padding>
                    <ion-img  class="image" src="assets/imgs/p4.jpg" ></ion-img></ion-col>
               </ion-row>
           </ion-grid>
-          <ion-card>
+          <ion-item-divider color="primary"></ion-item-divider>
+          <ion-card *ngIf="!ispresentEleve" >
               <ion-item>
-                  <ion-icon name="help-circle-outline"></ion-icon>
-                <ion-label>Comment ça marche?</ion-label>
-                <ion-button fill="outline" slot="end"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+                  <ion-icon name="help-circle-outline" slot="start"></ion-icon>
+                <ion-label>Comment ça marche ? </ion-label>
+                <ion-button fill="outline" slot="end" color="primary"><ion-icon name="arrow-forward"></ion-icon></ion-button>
               </ion-item>
             
               <ion-card-content>
@@ -32,8 +39,24 @@
                 within an ion-card-content element.
               </ion-card-content>
             </ion-card>
-        
-          <hr/>
-          <ion-button shape="round" expand="full" size="large" (click)="gotoAddEleve()">Suivre un élève</ion-button>
+        <ion-list *ngIf="ispresentEleve" >
+          <ion-card *ngFor="let eleve of eleves" >
+          <ion-item color="secondary"> 
+            <ion-avatar slot="start">
+              <img src="assets/imgs/student-male-64.png">
+            </ion-avatar>
+            <ion-label>
+              <h2>{{eleve.nom}} {{eleve.prenoms}}
+                
+                 </h2>
+              
+                <ion-chip outline >
+                    <ion-label color="">{{eleve.annee}} {{eleve.classe}}</ion-label>
+                  </ion-chip>     
+            </ion-label>
+            <ion-button size="small" color="primary" slot="end" (click)="gotoDetails(eleve)" ><ion-icon name="eye"></ion-icon>Détails</ion-button>
+          </ion-item>
+        </ion-card>
+        </ion-list>
       </ion-content>
   
